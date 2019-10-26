@@ -9,10 +9,12 @@ The run code online progrom based on CQP and glot.io
 
 3.运行CQP程序，并启用插件
 
-4.在群内回复super [programming language] [your code]，如  
+4.在群内回复code [programming language] [your code]，如  
 code cpp  
 #include <stdio.h>  
 int main(){printf( "Hello,world");return 0;}
+若程序中需要输入，请在运行代码前回复input[your input]
+如input123
 
 5.本程序目前支持以下编程语言的代码  
     		{"assembly","main.asm"},  
