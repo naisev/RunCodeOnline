@@ -260,42 +260,8 @@ string runall(const char* lan, const char* content,const char* input) noexcept
 	}
 	return "No this Language";
 }
-/*
-* Type=21 私聊消息
-* subType 子类型，11/来自好友 1/来自在线状态 2/来自群 3/来自讨论组
-*/
-CQEVENT(int32_t, __eventPrivateMsg, 24)(int32_t subType, int32_t msgId, int64_t fromQQ, const char *msg, int32_t font) {
-	//vector<string> vec = getarg(msg);
-	//if (vec[0] == "super")
-	//{
-	//	//消除转义
-	//	vec[2] = strToggle(vec[2]);
 
-	//	//获取运行结果
-	//	string ret = runall(vec[1].c_str(),vec[2].c_str());
-
-	//	//增加转义
-	//	ret = strToggle(ret);
-
-	//	if (ret.length() >= 3000)
-	//	{
-	//		ret = "回应过长，已做截断处理\n" + ret;
-	//		ret = ret.substr(0, 3000);
-	//	}
-
-	//	CQ_sendPrivateMsg(ac, fromQQ, ret.c_str());
-	//}
-	////如果要回复消息，请调用酷Q方法发送，并且这里 return EVENT_BLOCK - 截断本条消息，不再继续处理  注意：应用优先级设置为"最高"(10000)时，不得使用本返回值
-	////如果不回复消息，交由之后的应用/过滤器处理，这里 return EVENT_IGNORE - 忽略本条消息
-	return EVENT_IGNORE;
-}
-
-
-/*
-* Type=2 群消息
-*/
-
-char* GetInput(char *msg) {
+char* GetInput(char* msg) {
 	char* m = strstr(msg, "input");
 	if (m != NULL) {
 		int length = strlen(msg);
@@ -307,7 +273,7 @@ char* GetInput(char *msg) {
 }
 void Add(int64_t qq, char* msg) {
 	//CQ_sendGroupMsg(ac, 750462328, msg); 
-	for (int i = 0; i<uid.size(); i++) {
+	for (int i = 0; i < uid.size(); i++) {
 		if (uid[i] == qq) {
 			saveInput[i] = msg;
 			return;
@@ -325,6 +291,56 @@ char* GetSaveInput(int64_t qq) {
 	}
 	return NULL;
 }
+
+/*
+* Type=21 私聊消息
+* subType 子类型，11/来自好友 1/来自在线状态 2/来自群 3/来自讨论组
+*/
+CQEVENT(int32_t, __eventPrivateMsg, 24)(int32_t subType, int32_t msgId, int64_t fromQQ, const char *msg, int32_t font) {
+	vector<string> vec = getarg(msg);
+	//获取input
+	char* tmpMsg = new char[strlen(msg) + 1];
+	strcpy(tmpMsg, msg);
+	char* input = GetInput(tmpMsg);
+	if (input != NULL) {
+		Add(fromQQ, input);
+		char* reply = new char[strlen("已保存输入\n") + strlen(input)];
+		*reply = '\0';
+		strcat(reply, "已保存输入\n");
+
+		strcat(reply, input);
+		CQ_sendPrivateMsg(ac, fromQQ, reply);
+	}
+
+
+	if (vec[0] == "code")
+	{
+		//消除转义
+		vec[2] = strToggle(vec[2]);
+
+		//获取运行结果
+		string ret = runall(vec[1].c_str(), vec[2].c_str(), GetSaveInput(fromQQ));
+
+		//增加转义
+		ret = strToggle(ret);
+
+		//增加AT
+		ret = "[CQ:at,qq=" + to_string(fromQQ) + "]\n" + ret;
+
+		if (ret.length() >= 3000)
+		{
+			ret = "回应过长，已做截断处理\n" + ret;
+			ret = ret.substr(0, 3000);
+		}
+		CQ_sendPrivateMsg(ac, fromQQ, ret.c_str());
+	}
+	return EVENT_IGNORE;
+}
+
+
+/*
+* Type=2 群消息
+*/
 CQEVENT(int32_t, __eventGroupMsg, 36)(int32_t subType, int32_t msgId, int64_t fromGroup, int64_t fromQQ, const char *fromAnonymous, const char *msg, int32_t font) {
 
 	vector<string> vec = getarg(msg);
@@ -342,7 +358,7 @@ CQEVENT(int32_t, __eventGroupMsg, 36)(int32_t subType, int32_t msgId, int64_t fr
 	}
 	
 	
-	if (vec[0] == "super")
+	if (vec[0] == "code")
 	{
 		//消除转义
 		vec[2] = strToggle(vec[2]);
@@ -372,28 +388,42 @@ CQEVENT(int32_t, __eventGroupMsg, 36)(int32_t subType, int32_t msgId, int64_t fr
 */
 CQEVENT(int32_t, __eventDiscussMsg, 32)(int32_t subType, int32_t msgId, int64_t fromDiscuss, int64_t fromQQ, const char *msg, int32_t font) {
 
-	//vector<string> vec = getarg(msg);
-	//if (vec[0] == "super")
-	//{
-	//	//消除转义
-	//	vec[2] = strToggle(vec[2]);
+	vector<string> vec = getarg(msg);
+	//获取input
+	char* tmpMsg = new char[strlen(msg) + 1];
+	strcpy(tmpMsg, msg);
+	char* input = GetInput(tmpMsg);
+	if (input != NULL) {
+		Add(fromQQ, input);
+		char* reply = new char[strlen("已保存输入\n") + strlen(input)];
+		*reply = '\0';
+		strcat(reply, "已保存输入\n");
+		strcat(reply, input);
+		CQ_sendDiscussMsg(ac, fromDiscuss, reply);
+	}
 
-	//	//获取运行结果
-	//	string ret = runall(vec[1].c_str(), vec[2].c_str());
 
-	//	//增加转义
-	//	ret = strToggle(ret);
+	if (vec[0] == "code")
+	{
+		//消除转义
+		vec[2] = strToggle(vec[2]);
 
-	//	//增加AT
-	//	ret = "[CQ:at,qq=" + to_string(fromQQ) + "]\n" + ret;
+		//获取运行结果
+		string ret = runall(vec[1].c_str(), vec[2].c_str(), GetSaveInput(fromQQ));
 
-	//	if (ret.length() >= 3000)
-	//	{
-	//		ret = "回应过长，已做截断处理\n" + ret;
-	//		ret = ret.substr(0, 3000);
-	//	}
-	//	CQ_sendDiscussMsg(ac, fromDiscuss, ret.c_str());
-	//}
+		//增加转义
+		ret = strToggle(ret);
+
+		//增加AT
+		ret = "[CQ:at,qq=" + to_string(fromQQ) + "]\n" + ret;
+
+		if (ret.length() >= 3000)
+		{
+			ret = "回应过长，已做截断处理\n" + ret;
+			ret = ret.substr(0, 3000);
+		}
+		CQ_sendDiscussMsg(ac, fromDiscuss, ret.c_str());
+	}
 	return EVENT_IGNORE; //关于返回值说明, 见“_eventPrivateMsg”函数
 }
 

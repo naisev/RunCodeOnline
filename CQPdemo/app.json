@@ -9,7 +9,7 @@
     "version_id":2,				// 应用顺序版本（每次发布时至少+1）
     "author":"super & naise",			// 应用作者
     "description":"在线运行C++程序，示例如下：\r\n
-super cpp\r\n#include<iostream>\r\nint main()\r\n{\r\n  std::cout<<\"Hello super\";\r\n}",
+code cpp\r\n#include<iostream>\r\nint main()\r\n{\r\n  std::cout<<\"Hello super\";\r\n}",
     "event":[					// 事件列表，同一事件类型可重复定义（发布前请删除无用事件）
         {
             "id":1,							// 事件ID
