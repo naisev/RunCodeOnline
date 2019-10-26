@@ -10,7 +10,7 @@ The run code online progrom based on CQP and glot.io
 3.运行CQP程序，并启用插件
 
 4.在群内回复super [programming language] [your code]，如  
-super cpp  
+code cpp  
 #include <stdio.h>  
 int main(){printf( "Hello,world");return 0;}
 
