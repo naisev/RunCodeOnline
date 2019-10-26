@@ -15,7 +15,7 @@ code cpp
 int main(){printf( "Hello,world");return 0;}
 
 5.本程序目前支持以下编程语言的代码  
-    {"assembly","main.asm"},  
+    		{"assembly","main.asm"},  
 		{"ats","main.dats"},  
 		{"bash","main.sh"},  
 		{"c","main.c"},  
