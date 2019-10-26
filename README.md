@@ -3,7 +3,7 @@
 The run code online progrom based on CQP and glot.io
 
 # 说明
-1.下载CQP程序(https://cqp.me)
+1.下载CQP程序(https://cqp.cc)
 
 2.编译本代码或直接下载本代码中的cn.ylz1.runcodeonline.cpk放在[CQP目录\app\\]
 
