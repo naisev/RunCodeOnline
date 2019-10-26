@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="CQP">
+      <UniqueIdentifier>{cea9c087-8f9b-4355-aeb9-17c2f5a3a16e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User Head">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="User Code">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="jsoncpp">
+      <UniqueIdentifier>{e9214cdb-842b-417c-a20d-60e0c7dd1042}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User Code\libcurl">
+      <UniqueIdentifier>{d063b52e-abef-4087-885e-2367981ff024}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="user\curlpost.h">
+      <Filter>User Head</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appmain.h">
+      <Filter>User Head</Filter>
+    </ClInclude>
+    <ClInclude Include="user\MJson.h">
+      <Filter>User Head</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="CQP.lib">
+      <Filter>CQP</Filter>
+    </Library>
+    <Library Include="lib\libcurl_a.lib">
+      <Filter>User Code\libcurl</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="user\dllmain.cpp">
+      <Filter>User Code</Filter>
+    </ClCompile>
+    <ClCompile Include="jsoncpp\jsoncpp.cpp">
+      <Filter>jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="user\appmain.cpp">
+      <Filter>User Code</Filter>
+    </ClCompile>
+    <ClCompile Include="user\curlpost.cpp">
+      <Filter>User Code</Filter>
+    </ClCompile>
+    <ClCompile Include="user\MJson.cpp">
+      <Filter>User Code</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
