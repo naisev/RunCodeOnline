@@ -55,8 +55,8 @@ int main(){printf( "Hello,world");return 0;}
 
 # 声明
 该程序部分源代码及思路来源于@top.wellsun.runall(https://cqp.cc/t/44691)
-基于MIT LISENSE开源，我基于其代码进行二次开发，增加了input功能  
-Part of the program source code and ideas from @top.wellsun.runall, based on MIT LISENSE open source,I am based on the second development of his code, adding 'input' function
+采用MIT LISENSE开源，我基于其代码进行二次开发，增加了input功能  
+Part of the program source code and ideas from @top.wellsun.runall, use MIT LISENSE to open source,I am based on the second development of his code, adding 'input' function
 
 二次开发请保留此声明并且保留作者版权  
 Please keep this statement and the author's copyright if you want secondary development
