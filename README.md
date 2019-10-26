@@ -3,7 +3,7 @@
 The run code online progrom based on CQP and glot.io
 
 # 说明
-1.下载CQP程序(https://cqp.me)
+1.下载CQP程序(https://cqp.cc)
 
 2.编译本代码或直接下载本代码中的cn.ylz1.runcodeonline.cpk放在[CQP目录\app\\]
 
@@ -54,7 +54,7 @@ int main(){printf( "Hello,world");return 0;}
 		{"typescript","main.ts"}  
 
 # 声明
-该程序部分源代码及思路来源于@top.wellsun.runall，基于MIT LISENSE开源，我基于其代码进行二次开发，增加了input功能  
+该程序部分源代码及思路来源于@top.wellsun.runall(https://cqp.cc/t/44691)，基于MIT LISENSE开源，我基于其代码进行二次开发，增加了input功能  
 Part of the program source code and ideas from @top.wellsun.runall, based on MIT LISENSE open source,I am based on the second development of his code, adding 'input' function
 
 二次开发请保留此声明并且保留作者版权  
