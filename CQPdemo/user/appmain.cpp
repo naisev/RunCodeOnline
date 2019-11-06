@@ -297,7 +297,6 @@ char* GetSaveInput(int64_t qq) {
 	}
 	return NULL;
 }
-
 /*
 * Type=21 私聊消息
 * subType 子类型，11/来自好友 1/来自在线状态 2/来自群 3/来自讨论组
