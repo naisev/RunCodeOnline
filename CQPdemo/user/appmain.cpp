@@ -239,6 +239,7 @@ string runall(const char* lan, const char* content,const char* input) noexcept
 		string filename = i.second;
 		string website = "https://glot.io/run/" + i.first + "?version=latest";
 		string ret;
+		//split(filename, ".").at(1)
 		if (split(filename, ".").at(1) == lan) {
 			try {
 				Json::Value  J;
@@ -258,7 +259,12 @@ string runall(const char* lan, const char* content,const char* input) noexcept
 			}
 		}
 	}
-	return "No this Language";
+	for (const pair<string, string>& i : lanmap) {
+		if (lan == i.first) {
+			return "Please reply:\ncode " + split(i.second, ".").at(1) + "\nYourCode";
+		}
+	}
+	return "No this language";
 }
 
 char* GetInput(char* msg) {
